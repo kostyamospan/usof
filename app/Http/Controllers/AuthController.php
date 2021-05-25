@@ -35,7 +35,7 @@ class AuthController extends IdentityController
             'password' => bcrypt($request->password),
         ]);
 
-        $token = auth()->login($user);
+        $token = JWTAuth::login($user);
 
         return $this->respondWithToken($token);
     }
@@ -73,7 +73,7 @@ class AuthController extends IdentityController
      */
     public function logout()
     {
-        auth()->logout();
+        JWTAuth::logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }

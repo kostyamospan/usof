@@ -36,6 +36,6 @@ abstract class IdentityController extends Controller
      */
     public function user()
     {
-        return response()->json(auth()->user());
+        return auth()->user();
     }
 }
