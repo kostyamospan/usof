@@ -28,4 +28,9 @@ class PostsController extends IdentityController
     {
         return response()->json(Posts::find($id));
     }
+
+    public function createNewPost(Request $request, $id)
+    {
+        return response()->json(Posts::find($id));
+    }
 }

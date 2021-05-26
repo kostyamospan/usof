@@ -20,8 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('getHello', function (Request $request) {return "hello world";});
-
 Route::get('users', function (Request $request) {
     return response()->json(User::all());
 });
@@ -30,3 +28,6 @@ Route::post('getCurrentUser', [AuthController::class, 'getCurrentUser']);
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
+
+
+Route::post('', [AuthController::class, 'register']);
