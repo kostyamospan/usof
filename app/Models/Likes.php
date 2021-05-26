@@ -17,7 +17,7 @@ class Likes extends Model
 
     protected $table = 'likes';
     // protected $primaryKey = 'id';
-    // public $timestamps = false;
+    public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];

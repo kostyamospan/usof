@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\PostsController;
+use App\Http\Controllers\PostsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('jwt')->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -30,13 +31,13 @@ Route::post('getCurrentUser', [AuthController::class, 'getCurrentUser']);
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 
-Route::get('posts', [PostsController::class, 'getAllPosts']); // +
-Route::get('posts/{id}', [PostsController::class, 'getPostById']);// +
+Route::get('posts', [PostsController::class, 'getAllPosts']); // + tested
+Route::get('posts/{id}', [PostsController::class, 'getPostById']);// + tested
 Route::get('posts/{id}/comments', [PostsController::class, 'getPostComments']);// +
 Route::post('posts/{id}/comments', [PostsController::class, 'createNewComment']); // +
 Route::get('posts/{id}/categories', [PostsController::class, 'getPostCategories']); // +
 Route::get('posts/{id}/likes', [PostsController::class, 'getPostLikes']); // +
-Route::post('post', [PostsController::class, 'createNewPost']);// +
+Route::post('post', [PostsController::class, 'createNewPost']);// + tested
 Route::post('posts/{id}/likes', [PostsController::class, 'setPostLike']); // +
 Route::patch('posts/{id}', [PostsController::class, 'updatePost']);
 Route::delete('posts/{id}', [PostsController::class, 'deletePost']);// +

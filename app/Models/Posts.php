@@ -16,8 +16,8 @@ class Posts extends Model
     */
 
     protected $table = 'posts';
-    // protected $primaryKey = 'id';
-    // public $timestamps = false;
+    protected $primaryKey = 'post_id';
+    public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];

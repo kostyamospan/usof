@@ -17,7 +17,7 @@ class Comments extends Model
 
     protected $table = 'comments';
     // protected $primaryKey = 'id';
-    // public $timestamps = false;
+    public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];

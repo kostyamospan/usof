@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\IdentityController;
@@ -50,19 +50,22 @@ class PostsController extends IdentityController
 
         $newPost = new Posts();
 
-        $newPost->userId = $user->id;
+        $newPost->user_id = $user->id;
         $newPost->publishDate = date('Y-m-d H:i:s');
         $newPost->status = 'active';
 
+        $newPost->title = $request->input("title");
         $newPost->content = $request->input("content");
 
         $newPost->save();
 
-        foreach (json_decode($request->input("categories")) as $category) {
-            $newPostCategiry = new Post_category();
+        if ($categories = json_decode($request->input("categories"))) {
+            foreach ($categories as $category) {
+                $newPostCategiry = new Post_category();
 
-            $newPostCategiry->post_id = $newPost->id;
-            $newPostCategiry->category_id = $category;
+                $newPostCategiry->post_id = $newPost->id;
+                $newPostCategiry->category_id = $category;
+            }
         }
 
         return response()->json($newPost->post_id);
@@ -72,7 +75,9 @@ class PostsController extends IdentityController
     {
         $newComment = new Comments();
         $newComment->user_id = auth()->user()->id;
-        $newComment->publish_date = date('Y-m-d H:i:s');
+        $newComment->post_id = $id;
+
+        $newComment->publishDate = date('Y-m-d H:i:s');
         $newComment->content = $request->input("content");
 
         $newComment->save();
