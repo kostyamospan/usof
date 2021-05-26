@@ -23,6 +23,20 @@ class Posts extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Likes::class);
+    }
+
+    public function categiries()
+    {
+        return $this->belongsToMany(Categories::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

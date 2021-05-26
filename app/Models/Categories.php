@@ -23,6 +23,11 @@ class Categories extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+    public function posts()
+    {
+        return $this->belongsToMany(Posts::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
