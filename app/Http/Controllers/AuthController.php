@@ -35,7 +35,7 @@ class AuthController extends IdentityController
             'password' => bcrypt($request->password),
         ]);
 
-        $token = JWTAuth::login($user);
+        $token = JWTAuth::attempt($user);
 
         return $this->respondWithToken($token);
     }
