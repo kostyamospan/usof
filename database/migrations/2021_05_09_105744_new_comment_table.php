@@ -14,14 +14,14 @@ class NewCommentTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id('comment_id');
+            $table->id('id');
             $table->unsignedBigInteger('post_id');
 
 
             $table->timestamp('publishDate')->useCurrent();
             $table->string('content')->nullable(false);
 
-            $table->foreign('post_id')->references('post_id')->on('posts')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

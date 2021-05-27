@@ -14,7 +14,7 @@ class NewCategoryTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id('category_id');
+            $table->id('id');
 
             $table->string('title')->nullable(false);
             $table->string('decription')->nullable(false);

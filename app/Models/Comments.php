@@ -16,12 +16,19 @@ class Comments extends Model
     */
 
     protected $table = 'comments';
-    // protected $primaryKey = 'id';
+    // protected $primaryKey = 'comment_id';
     public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
+
+
+
+    public function post()
+    {
+        return $this->belongsTo(Posts::class,'comment_id');
+    }
 
     /*
     |--------------------------------------------------------------------------

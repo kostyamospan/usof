@@ -16,7 +16,9 @@ class Posts extends Model
     */
 
     protected $table = 'posts';
-    protected $primaryKey = 'post_id';
+
+    // protected $primaryKey = 'post_id';
+
     public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
@@ -25,18 +27,24 @@ class Posts extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'post_id');
     }
 
     public function likes()
     {
-        return $this->hasMany(Likes::class);
+        return $this->hasMany(Likes::class, 'post_id');
     }
 
     public function categiries()
     {
-        return $this->belongsToMany(Categories::class);
+        return $this->belongsToMany(Categories::class, 'post_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comments::class, 'post_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

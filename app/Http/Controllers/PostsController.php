@@ -97,6 +97,8 @@ class PostsController extends IdentityController
         $newLike->type = $request->input('type');
         $newLike->user_id = auth()->user()->id;
         $newLike->post_id = $id;
+
+        $newLike->save();
     }
 
     public function deletePost(Request $request, $id)

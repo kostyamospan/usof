@@ -23,6 +23,11 @@ class Likes extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+    public function post()
+    {
+        return $this->belongsTo(Posts::class, 'like_id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
