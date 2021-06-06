@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,18 @@ Route::get('categories/{id}/posts', [CategoriesController::class, 'getCategoryPo
 Route::post('categories', [CategoriesController::class, 'createCategory']); // +
 Route::patch('categories/{id}', [CategoriesController::class, 'updateCategory']);
 Route::delete('categories/{id}', [CategoriesController::class, 'deleteCategory']); // +
+
+
+Route::get('comments/{id}', [CommentsController::class, 'getCommentById']);
+Route::get('comments/{id}/like', [CommentsController::class, 'getCommentLikes']);
+Route::post('comments/{id}/like', [CommentsController::class, 'addLikeToComent']);
+Route::patch('comments/{id}', [CommentsController::class, 'updateComment']);
+Route::delete('comments/{id}', [CommentsController::class, 'deleteComment']);
+Route::delete('comments/{id}/like', [CommentsController::class, 'deleteLikeUnderComment']);
+
+
+
+
 
 
 
