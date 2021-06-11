@@ -7,6 +7,7 @@ use App\Http\Controllers\IdentityController;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Users;
+use Error;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends IdentityController
@@ -34,7 +35,7 @@ class UserController extends IdentityController
     {
         
     }
-    
+
     public function deleteUser(Request $request,$userId)
     {
         if($userId != $this->user()->id)  {

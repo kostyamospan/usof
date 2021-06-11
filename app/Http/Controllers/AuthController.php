@@ -29,13 +29,19 @@ class AuthController extends IdentityController
             'password' => 'required'
         ]);
 
-        $user = User::create([
+
+        $arr = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-        ]);
+        ];
+        
+        User::create($arr);
 
-        $token = JWTAuth::attempt($user);
+        $token = JWTAuth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
 
         return $this->respondWithToken($token);
     }
@@ -46,7 +52,7 @@ class AuthController extends IdentityController
      * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
-    {
+    {   
         $credentials = request(['email', 'password']);
 
         if (!$token = JWTAuth::attempt($credentials)) {

@@ -14,7 +14,7 @@ class AlterUsersAvatar extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatarPath')->nullable(false)->default(app_path() . '\Storage\Avatars\defaultImage.png');
+            $table->string('avatarPath')->nullable(false)->default(app_path() . '\\..\\storage\\Avatars\\defaultAvatar.png');
         });
     }
 
