@@ -7,6 +7,7 @@ use App\Http\Controllers\IdentityController;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Users;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends IdentityController
 {
@@ -31,12 +32,13 @@ class UserController extends IdentityController
 
     public function updateUserData(Request $request)
     {
-        // todo
+        
     }
+    
     public function deleteUser(Request $request,$userId)
     {
         if($userId != $this->user()->id)  {
-            // todo: return 5xx result 
+            return response('User can delete only itself',501);
         }
 
         User::find($userId)->delete();
@@ -45,12 +47,10 @@ class UserController extends IdentityController
 
     public function setAvatar(Request $request)
     {
-        $newPath = $request->file('avatar')->storeAs('Storage\Avatars', $this->user()->id . "-" . date("Ymd"));
+        $newPath = $request->file('avatar')->storeAs('storage\avatars', $this->user()->id . "-" . date("Ymd"));
         $user = $this->user();
         $user->avatarPath = $newPath;
         $user->save();
         return response()->json($newPath);
     }
-
-
 }
